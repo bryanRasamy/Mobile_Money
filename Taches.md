@@ -50,6 +50,9 @@
     - Table historique
     - Table type_operation
 
+- Vue v_situation_gain:
+    - Vue v_historique_type_operation
+
 ## 2-Pages à creer:
 ### 2-1-Coté opérateur (ETU004018):
 #### a-config_prefix.php:
@@ -96,18 +99,19 @@
     - On ajoute un bouton + sur le formulaire du bareme, ce bouton permet d'ajouter un champs dans le formulaire et on ajoute aussi un bouton - qui permet d'effacer ce champs (Js)
 
 #### c-situation_gain.php:
-- (ok) base:
+- base:
     - Table historique
     - Vue v_historique_Type_operation
+    - Vue v_situation_gain
 
 - fonctions:
     - afficherSituationGain()
 
 - design:
-    - Des cards affichant chaque total des gains pour chaque type d'operation
+    - Des cards affichant chaque total des gains pour chaque type d'operation de l'operateur
 
 - integration:
-    - none
+    - Les card sont afficher dynamiquement
 
 #### d-situation_clients.php:
 - base:

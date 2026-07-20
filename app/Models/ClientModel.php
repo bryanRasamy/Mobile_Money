@@ -10,12 +10,14 @@ class ClientModel extends Model {
 
     protected $allowedFields = [
         'telephone',
+        'id_operateur',
         'id_role',
         'id_statut'
     ];
 
     protected $validationRules = [
         'telephone' => 'required|max_length[20]|is_unique[clients.telephone,id,{id}]',
+        'id_operateur' => 'required|integer|is_not_unique[operateurs.id]',
         'id_role' => 'required|integer|is_not_unique[role.id]',
         'id_statut' => 'required|integer|is_not_unique[statut_client.id]',
     ];
@@ -25,6 +27,11 @@ class ClientModel extends Model {
             'required' => 'Le telephone est obligatoire.',
             'max_length' => 'Le telephone ne doit pas depasser 20 caracteres.',
             'is_unique' => 'Ce numero de telephone est deja utilise.',
+        ],
+        'id_operateur' => [
+            'required' => 'L\'operateur est obligatoire.',
+            'integer' => 'L\'operateur doit etre un entier.',
+            'is_not_unique' => 'L\'operateur selectionne est invalide.',
         ],
         'id_role' => [
             'required' => 'Le role est obligatoire.',

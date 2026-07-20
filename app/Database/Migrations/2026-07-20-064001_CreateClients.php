@@ -19,6 +19,11 @@ class CreateClients extends Migration
                 'type'       => 'TEXT',
                 'null'       => false,
             ],
+            'id_operateur' => [
+                'type'       => 'INTEGER',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
             'id_role' => [
                 'type'       => 'INTEGER',
                 'constraint' => 11,
@@ -33,7 +38,7 @@ class CreateClients extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('telephone');
-
+        $this->forge->addForeignKey('id_operateur', 'operateurs', 'id', 'CASCADE', 'RESTRICT');
         $this->forge->addForeignKey('id_role', 'role', 'id', 'CASCADE', 'RESTRICT');
         $this->forge->addForeignKey('id_statut', 'statut_client', 'id', 'CASCADE', 'RESTRICT');
 

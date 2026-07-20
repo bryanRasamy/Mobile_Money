@@ -11,16 +11,19 @@ class ClientsSeeder extends Seeder
         $data = [
             [
                 'telephone' => '0340000001',
+                'id_operateur' => 2,
                 'id_role' => 1,
                 'id_statut' => 1,
             ],
             [
                 'telephone' => '0340000002',
+                'id_operateur' => 2,
                 'id_role' => 1,
                 'id_statut' => 2,
             ],
             [
                 'telephone' => '0321234567',
+                'id_operateur' => 1,
                 'id_role' => 1,
                 'id_statut' => 1,
             ],
