@@ -5,6 +5,7 @@
 - (ok) Table prefixe:
     - id
     - libelle
+    - id_operateur
 
 - (ok) Table type_operation: 
     - id
@@ -30,6 +31,7 @@
     - telephone 
     - id_role 
     - id_statut
+    - id_operateur
 
 - (ok) Table operateurs: 
     - id
@@ -49,9 +51,6 @@
 - (ok) Vue v_historique_type_operation:
     - Table historique
     - Table type_operation
-
-- Vue v_situation_gain:
-    - Vue v_historique_type_operation
 
 ## 2-Pages à creer:
 ### 2-1-Coté opérateur (ETU004018):
@@ -102,7 +101,6 @@
 - base:
     - Table historique
     - Vue v_historique_Type_operation
-    - Vue v_situation_gain
 
 - fonctions:
     - afficherSituationGain()

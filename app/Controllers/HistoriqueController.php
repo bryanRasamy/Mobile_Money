@@ -3,19 +3,25 @@
 namespace App\Controllers;
 
 use App\Models\HistoriqueModel;
+use App\Models\VueHistoriqueTypeOperationClientModel;
 
 class HistoriqueController extends BaseController {
     public function index(){
+        $user = session()->get('user');
 
-       $donnee = [
+        if (!$user || !isset($user['id'])) {
+            $errorMsg = 'Session expirée. Veuillez vous reconnecter.';
+
+            return redirect()->to('/')->with('error', $errorMsg);
+        }
+
+        $vueModel = new VueHistoriqueTypeOperationClientModel();
+
+        $situations = $vueModel->getTotalParTypePourOperateur($user['id']);
+
+        $donnee = [
             'titre'      => 'Situation des gains',
-            'situations' => [
-                ['nom_operation' => 'Depot',     'total_frais' => 1250000],
-                ['nom_operation' => 'Retrait',   'total_frais' => 820000],
-                ['nom_operation' => 'Transfert', 'total_frais' => 430000],
-                ['nom_operation' => 'Test', 'total_frais' => 430000],
-                ['nom_operation' => 'Test 2', 'total_frais' => 430000],
-            ],
+            'situations' => $situations,
         ];
 
         return view('operateur/situation_gain', $donnee);
