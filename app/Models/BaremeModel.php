@@ -51,4 +51,14 @@ class BaremeModel extends Model {
             throw new \Exception($e->getMessage());
         }
     }
+
+    public function getFrais(int $idType, float $montant): float
+    {
+        $bareme = $this->where('id_type', $idType)
+                        ->where('valeur_min <=', $montant)
+                        ->where('valeur_max >=', $montant)
+                        ->first();
+
+        return $bareme ? (float) $bareme['montant'] : 0.0;
+    }
 }
