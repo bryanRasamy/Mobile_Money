@@ -1,0 +1,9 @@
+public function before(RequestInterface $request, $arguments = null){
+        $session = session();
+        $user = $session->get('user');
+        $arguments=['admin', 'bibliothecaire'];
+        
+        if (!$user || !in_array($user['role'], $arguments ?? [])) {
+            return redirect()->back()->with('error', 'Accès refusé : droits insuffisants');
+        }
+    }
