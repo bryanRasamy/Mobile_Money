@@ -41,4 +41,14 @@ class BaremeModel extends Model {
             'decimal' => 'Le montant doit etre un nombre decimal.',
         ],
     ];
+
+    public function ajouterBaremes($baremes){
+        try {
+            foreach ($baremes as $bareme) {
+               $this->insert($bareme);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
 }

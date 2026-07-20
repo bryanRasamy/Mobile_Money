@@ -17,7 +17,8 @@ CREATE TABLE prefixe (
 
 CREATE TABLE type_operation (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    nom_operation VARCHAR(100) 
+    nom_operation VARCHAR(100),
+    commission DECIMAL(15,2)
 );
 
 CREATE TABLE baremes (
@@ -83,10 +84,10 @@ INSERT INTO prefixe (id, libelle, id_operateur) VALUES
 (4, '037', 1),
 (5, '038', 2);
 
-INSERT INTO type_operation (id, nom_operation) VALUES
-(1, 'Depot'),
-(2, 'Retrait'),
-(3, 'Transfert');
+INSERT INTO type_operation (id, nom_operation, commission) VALUES
+(1, 'Depot',10),
+(2, 'Retrait',15),
+(3, 'Transfert',20);
 
 INSERT INTO clients 
 (id, telephone, id_role, id_statut) VALUES

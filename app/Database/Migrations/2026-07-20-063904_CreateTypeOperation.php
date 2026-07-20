@@ -17,6 +17,10 @@ class CreateTypeOperation extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
+            'commission' => [
+                'type' => 'DECIMAL',
+                'constraint' => '15,2',
+            ],
         ]);
 
         $this->forge->addKey('id', true);

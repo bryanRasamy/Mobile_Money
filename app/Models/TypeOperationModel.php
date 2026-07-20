@@ -9,11 +9,13 @@ class TypeOperationModel extends Model {
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'nom_operation'
+        'nom_operation',
+        'commission'
     ];
 
     protected $validationRules = [
         'nom_operation' => 'required|max_length[100]',
+        'commission' => 'required|decimal'
     ];
 
     protected $validationMessages = [
