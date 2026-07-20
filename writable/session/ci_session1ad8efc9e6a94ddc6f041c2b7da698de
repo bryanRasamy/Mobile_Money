@@ -1,0 +1,1 @@
+__ci_last_regenerate|i:1784548186;_ci_previous_url|s:44:"http://localhost:8080/operateur/prefixe/form";user|a:3:{s:2:"id";i:1;s:3:"nom";s:5:"admin";s:4:"role";i:2;}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:0:{}}__ci_vars|a:2:{s:13:"_ci_old_input";s:3:"old";s:7:"message";s:3:"old";}message|s:22:"Le prefixe est effacé";

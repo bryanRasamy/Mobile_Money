@@ -47,7 +47,7 @@ class PrefixeController extends BaseController {
             return redirect()->back()->withInput()->with('error', 'Erreur lors de l\'ajout du prefixe: ' . $e->getMessage());
         }
 
-        return redirect()->to('/prefixe/form')->with('message', 'Le prefixe a été ajouté avec succès.');
+        return redirect()->to('operateur/prefixe/form')->with('message', 'Le prefixe a été ajouté avec succès.');
     }
 
     public function supprimerPrefixe($id){
@@ -68,6 +68,7 @@ class PrefixeController extends BaseController {
 
         try {
             $prefixeModel->delete($id);
+            return redirect()->back()->withInput()->with('message', "Le prefixe est effacé");
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Erreur lors de la suppression du prefixe: ' . $e->getMessage());
         }

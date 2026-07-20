@@ -4,11 +4,12 @@ namespace App\Controllers;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+
 use CodeIgniter\Filters\FilterInterface;
 
 class RoleFilter implements FilterInterface
 {
-   public function before(RequestInterface $request, $arguments = null){
+    public function before(RequestInterface $request, $arguments = null){
         $session = session();
         $user = $session->get('user');
         $arguments=[1,2];

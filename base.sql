@@ -1,6 +1,18 @@
+CREATE TABLE operateurs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    nom VARCHAR(100) ,
+    mdp VARCHAR(255) ,
+    id_role INTEGER ,
+
+    FOREIGN KEY (id_role) REFERENCES role(id)
+);
+
 CREATE TABLE prefixe (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(20) 
+    libelle VARCHAR(20),
+    id_operateur INTEGER,
+
+    FOREIGN KEY (id_operateur) REFERENCES operateurs(id)
 );
 
 CREATE TABLE type_operation (
@@ -38,15 +50,6 @@ CREATE TABLE clients (
     FOREIGN KEY (id_statut) REFERENCES statut_client(id)
 );
 
-CREATE TABLE operateurs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    nom VARCHAR(100) ,
-    mdp VARCHAR(255) ,
-    id_role INTEGER ,
-
-    FOREIGN KEY (id_role) REFERENCES role(id)
-);
-
 CREATE TABLE historique (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
     id_client_depart INTEGER ,
@@ -69,12 +72,16 @@ INSERT INTO statut_client (id, libelle) VALUES
 (1, 'Actif'),
 (2, 'Inactif');
 
-INSERT INTO prefixe (id, libelle) VALUES
-(1, '032'),
-(2, '033'),
-(3, '034'),
-(4, '037'),
-(5, '038');
+INSERT INTO operateurs (id, nom, mdp, id_role) VALUES
+(1, 'orange', 'orange', 2),
+(2, 'autres', 'autres', 2);
+
+INSERT INTO prefixe (id, libelle, id_operateur) VALUES
+(1, '032', 1),
+(2, '033', 2),
+(3, '034', 2),
+(4, '037', 1),
+(5, '038', 2);
 
 INSERT INTO type_operation (id, nom_operation) VALUES
 (1, 'Depot'),
@@ -90,12 +97,6 @@ INSERT INTO clients
 (5, '0385555555', 1, 1),
 (6, '0346666666', 1, 2),
 (7, '0327777777', 1, 1);
-
-
-INSERT INTO operateurs
-(id, nom, mdp, id_role) VALUES
-(1, 'admin', 'admin123', 2),
-(2, 'jean', 'jean123', 2);
 
 
 INSERT INTO baremes
