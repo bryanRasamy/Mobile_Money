@@ -113,3 +113,6 @@ INSERT INTO historique
 (3, 3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
 (4, 5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
 (5, 7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');
+
+
+CREATE view v_historique_type_operation AS SELECT tp.nom_operation as nom_operation, hs.* FROM type_operation as tp JOIN historique as hs ON tp.id = hs.id_type;

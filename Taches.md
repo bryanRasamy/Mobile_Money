@@ -2,42 +2,42 @@
 
 ## 1-Tables nécessaires:
 
-- Table prefixe:
+- (ok) Table prefixe:
     - id
     - libelle
 
-- Table type_operation: 
+- (ok) Table type_operation: 
     - id
     - nom_operation
 
-- Table baremes: 
+- (ok) Table baremes: 
     - id
     - id_type 
     - valeur_min
     - valeur_max
     - montant
 
-- Table statut_client: 
+- (ok) Table statut_client: 
     - id
     - libelle
 
-- Table role:
+- (ok) Table role:
     - id
     - libelle
 
-- Table clients:
+- (ok) Table clients:
     - id
     - telephone 
     - id_role 
     - id_statut
 
-- Table operateurs: 
+- (ok) Table operateurs: 
     - id
     - nom
     - mdp
     - id_role
 
-- Table historique: 
+- (ok) Table historique: 
     - id
     - id_client_depart
     - id_type
@@ -46,13 +46,17 @@
     - frais
     - date
 
+- (ok) Vue v_historique_type_operation:
+    - Table historique
+    - Table type_operation
+
 ## 2-Pages à creer:
-### 2-1-Coté opérateur:
+### 2-1-Coté opérateur (ETU004018):
 #### a-config_prefix.php:
-- base:
+- (ok) base:
     - Table prefixe
 
-- fonctions:
+- (ok) fonctions:
     - ajouterPrefixe();
     - supprimerPrefixe();
 
@@ -71,11 +75,11 @@
 
 
 #### b-types_operation.php:
-- base:
+- (ok) base:
     - Table type_operation
     - Table baremes
     
-- fonctions:
+- (ok) fonctions:
     - ajouterTypeOperation()
     - ajouterbaremes()
 
@@ -84,7 +88,6 @@
         - formulaire avec champs:
             - nom de l'operation
 
-    - bareme:
         - formulaire avec champs:
             - valeur min
             - valeur max
@@ -94,13 +97,22 @@
     - On ajoute un bouton + sur le formulaire du bareme, ce bouton permet d'ajouter un champs dans le formulaire et on ajoute aussi un bouton - qui permet d'effacer ce champs (Js)
 
 #### c-situation_gain.php:
-- base:
+- (ok) base:
+    - Table historique
+    - Vue v_historique_Type_operation
+
 - fonctions:
+    - afficherSituationGain()
+
 - design:
+    - Des cards affichant chaque total des gains pour chaque type d'operation
+
 - integration:
+    - none
 
 #### d-situation_clients.php:
 - base:
+
 - fonctions:
 - design:
 - integration:
