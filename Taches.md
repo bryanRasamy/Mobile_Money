@@ -112,7 +112,7 @@
 
 #### d-situation_clients.php:
 - base:
-
+    - 
 - fonctions:
 - design:
 - integration:

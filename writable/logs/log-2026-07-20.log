@@ -1,0 +1,12 @@
+CRITICAL - 2026-07-20 11:16:44 --> ErrorException: Undefined array key "id_statut"
+[Method: GET, Route: operateur/prefixe/form]
+in APPPATH/Controllers/RoleFilter.php on line 17.
+ 1 APPPATH/Controllers/RoleFilter.php(17): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/Filters/Filters.php(241): App\Controllers\RoleFilter->before()
+ 3 SYSTEMPATH/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore()
+ 4 SYSTEMPATH/CodeIgniter.php(465): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/bryan/Documents/GitHub/Mobile_Money/public/index.php')
