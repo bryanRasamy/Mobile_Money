@@ -19,4 +19,5 @@ $routes->group('operateur', ['filter' => ['auth', 'role:2']], function($routes) 
     $routes->add('typeOperation/add', 'TypeOperationController::ajouterTypeOperation');
 
     $routes->get('situationGain', 'HistoriqueController::index');
+    $routes->get('situationClient', 'HistoriqueController::afficherCompteClient');
 });

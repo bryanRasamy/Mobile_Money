@@ -47,6 +47,9 @@
         <a href="<?= site_url('operateur/situationGain') ?>" class="sidebar-link <?= (strpos($currentUrl, 'situation_gain') !== false) ? 'active' : '' ?>">
           <i class="fas fa-chart-line"></i> Situation des gains
         </a>
+        <a href="<?= site_url('operateur/situationClient') ?>" class="sidebar-link <?= (strpos($currentUrl, 'situations_clients') !== false) ? 'active' : '' ?>">
+          <i class="fas fa-chart-line"></i> Situation des comptes clients
+        </a>
       </nav>
       <div class="sidebar-logout">
         <a href="<?= site_url('logout') ?>" class="btn-logout">

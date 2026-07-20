@@ -59,8 +59,9 @@
     - Table prefixe
 
 - (ok) fonctions:
-    - ajouterPrefixe();
-    - supprimerPrefixe();
+    - index() (PrefixeController.php)
+    - ajouterPrefixe()
+    - supprimerPrefixe()
 
 - (ok) design:
     - formulaire:
@@ -82,6 +83,7 @@
     - Table baremes
     
 - (ok) fonctions:
+    - index (TypesOperationController.php)
     - ajouterTypeOperation()
     - ajouterbaremes()
 
@@ -98,28 +100,45 @@
     - On ajoute un bouton + sur le formulaire du bareme, ce bouton permet d'ajouter un champs dans le formulaire et on ajoute aussi un bouton - qui permet d'effacer ce champs (Js)
 
 #### c-situation_gain.php:
-- base:
-    - Table historique
-    - Vue v_historique_Type_operation
+- (ok) base:
+    - Vue v_historique_Type_operation_client
 
-- fonctions:
-    - afficherSituationGain()
+- (ok) fonctions:
+    - index() (historiqueController.php)
 
-- design:
+- (ok) design:
     - Des cards affichant chaque total des gains pour chaque type d'operation de l'operateur
 
-- integration:
+- (ok) integration:
     - Les card sont afficher dynamiquement
 
 #### d-situation_clients.php:
-- base:
-    - 
-- fonctions:
-- design:
-- integration:
+- (ok) base:
+    - Table historique
+    - Table clients
+    - Table statut_client
+
+- (ok) fonctions:
+    - afficherCompteClient()
+
+- (ok) design:
+    - Cards affichant:
+        - client actif
+        - montant total transité
+        - frais total generer
+
+    - Tableau de client avec colonne:
+        - telephone
+        - statut
+        - nombres de transaction
+        - montant transité
+        - frais généré
+
+- (ok) integration:
+    - afficher le tableau dynamiquement
 
 
-### 2-2-Coté client:
+### 2-2-Coté client (ETU004068):
 #### a-login.php:
 - base:
     - 

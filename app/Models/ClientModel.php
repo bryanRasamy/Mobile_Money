@@ -44,4 +44,21 @@ class ClientModel extends Model {
             'is_not_unique' => 'Le statut selectionne est invalide.',
         ],
     ];
+
+    public function getSituationParClient($idOperateur){
+        return $this->select("
+                clients.id AS id_client,
+                telephone,
+                statut_client.libelle AS statut,
+                COUNT(historique.id) AS nombre_transactions,
+                SUM(historique.montant) AS total_montant,
+                SUM(CASE WHEN historique.id_client_depart = clients.id THEN historique.frais ELSE 0 END) AS total_frais
+            ", false)
+            ->join('statut_client', 'statut_client.id = clients.id_statut', 'left')
+            ->join('historique', 'historique.id_client_depart = clients.id OR historique.id_client_arriver = clients.id', 'left')
+            ->where('clients.id_operateur', $idOperateur)
+            ->groupBy('clients.id')
+            ->findAll();
+    }
+
 }
