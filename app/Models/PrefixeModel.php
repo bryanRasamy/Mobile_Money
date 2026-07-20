@@ -9,11 +9,13 @@ class PrefixeModel extends Model {
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'libelle'
+        'libelle',
+        'id_operateur'
     ];
 
     protected $validationRules = [
         'libelle' => 'required|max_length[20]',
+        'id_operateur' => 'required|integer'
     ];
 
     protected $validationMessages = [

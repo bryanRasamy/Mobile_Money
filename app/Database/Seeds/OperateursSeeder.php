@@ -10,13 +10,13 @@ class OperateursSeeder extends Seeder
     {
         $data = [
             [
-                'nom' => 'admin',
-                'mdp' => password_hash('admin123', PASSWORD_DEFAULT),
+                'nom' => 'orange',
+                'mdp' => password_hash('orange', PASSWORD_DEFAULT),
                 'id_role' => 2,
             ],
             [
-                'nom' => 'jean',
-                'mdp' => password_hash('jean123', PASSWORD_DEFAULT),
+                'nom' => 'autres',
+                'mdp' => password_hash('autres', PASSWORD_DEFAULT),
                 'id_role' => 2,
             ],
         ];

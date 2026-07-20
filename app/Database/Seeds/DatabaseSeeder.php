@@ -10,10 +10,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call('RoleSeeder');
         $this->call('StatutClientSeeder');
-        $this->call('PrefixeSeeder');
         $this->call('TypeOperationSeeder');
         $this->call('ClientsSeeder');
         $this->call('OperateursSeeder');
+        $this->call('PrefixeSeeder');
         $this->call('BaremesSeeder');
         $this->call('HistoriqueSeeder');
     }
