@@ -41,7 +41,7 @@
         <a href="<?= site_url('operateur/prefixe/form') ?>" class="sidebar-link <?= (strpos($currentUrl, 'prefixe') !== false) ? 'active' : '' ?>">
           <i class="fas fa-hashtag"></i> Prefixes
         </a>
-        <a href="<?= site_url('operateur/types_operation') ?>" class="sidebar-link <?= (strpos($currentUrl, 'types_operation') !== false) ? 'active' : '' ?>">
+        <a href="<?= site_url('operateur/typeOperation/form') ?>" class="sidebar-link <?= (strpos($currentUrl, 'types_operation') !== false) ? 'active' : '' ?>">
           <i class="fas fa-list-ol"></i> Types d'operation
         </a>
         <a href="<?= site_url('operateur/situation_gain') ?>" class="sidebar-link <?= (strpos($currentUrl, 'situation_gain') !== false) ? 'active' : '' ?>">

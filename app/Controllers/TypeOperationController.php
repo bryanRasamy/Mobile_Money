@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BaremeModel;
 use App\Models\TypeOperationModel;
 
 class TypeOperationController extends BaseController {
@@ -15,7 +16,7 @@ class TypeOperationController extends BaseController {
         }
 
         $donnee = [
-            'titre' => 'ajout de prefixe',
+            'titre' => "ajout d'un type d'operation",
         ];
 
         return view('operateur/types_operation', $donnee);
@@ -31,24 +32,39 @@ class TypeOperationController extends BaseController {
         }
 
         $nomOperation = $this->request->getPost('nom_operation');
+        $commission = $this->request->getPost('commission');
+        $baremes = $this->request->getPost('baremes');
 
+        if(!$baremes || empty($baremes)){
+            return redirect()->back()->withInput()->with('error', 'Les baremes sont obligatoires');
+        }
+
+        $baremeModele = new BaremeModel();
         $typeOperationModel = new TypeOperationModel();
 
         $donnee = [
-            'nom_operation' => $nomOperation
+            'nom_operation' => $nomOperation,
+            'commission' => $commission
         ];
 
         try {
             $typeOperationModel->insert($donnee);
+            $idType = $typeOperationModel->getInsertID();
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Erreur lors de l\'ajout du type d\'opération: ' . $e->getMessage());
         }
 
-        $baremeController = new BaremeController();
-        $baremes = $this->request->getPost('baremes');
+        foreach ($baremes as &$bareme) {
+            $bareme['id_type'] = $idType;
+        }
 
-        $baremeController->ajouterBaremes($baremes);
+        try {
+            $baremeModele->ajouterBaremes($baremes);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Erreur lors de l\'ajout des baremes: ' . $e->getMessage());
+        }
+        
 
-        return redirect()->to('/typeOperation/form')->with('message', 'Le type d\'opération a été ajouté avec succès.');
+        return redirect()->back()->withInput()->with('message', 'Le type d\'opération a été ajouté avec succès.');
     }
 }

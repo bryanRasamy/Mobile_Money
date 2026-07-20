@@ -60,7 +60,7 @@
     - ajouterPrefixe();
     - supprimerPrefixe();
 
-- design:
+- (ok) design:
     - formulaire:
         - champs pour le prefixe
         - bouton `ajouter un prefixe`
@@ -70,7 +70,7 @@
         - bouton modifier
         - bouton supprimer
 
-- integration:
+- (ok) integration:
     - Affichage dynamique du tableau
 
 
@@ -83,17 +83,16 @@
     - ajouterTypeOperation()
     - ajouterbaremes()
 
-- design:
+- (ok) design:
     - type d'operation:
         - formulaire avec champs:
             - nom de l'operation
-
-        - formulaire avec champs:
+            - commission
             - valeur min
             - valeur max
             - montant
 
-- integration:
+- (ok) integration:
     - On ajoute un bouton + sur le formulaire du bareme, ce bouton permet d'ajouter un champs dans le formulaire et on ajoute aussi un bouton - qui permet d'effacer ce champs (Js)
 
 #### c-situation_gain.php:
