@@ -41,7 +41,7 @@
       <?php } ?>
 
       <div class="grid-2 max-w-2xl w-full">
-        <a href="<?= site_url('client/login') ?>" class="choice-card client-card" role="button" aria-label="Connexion client">
+        <a href="<?= site_url('loginClient') ?>" class="choice-card client-card" role="button" aria-label="Connexion client">
           <div class="choice-icon icon-accent"><i class="fas fa-mobile-screen-button"></i></div>
           <h2 class="font-display font-bold mb-2" style="font-size:1.25rem;">Espace Client</h2>
           <p class="text-muted text-sm">Accedez a votre compte avec votre numero de telephone</p>

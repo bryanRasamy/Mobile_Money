@@ -3,8 +3,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TypeOperationModel extends Model {
-    protected $table      = 'type_operation';
+class TypeOperationModel extends Model
+{
+    protected $table = 'type_operation';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
 
@@ -24,4 +25,10 @@ class TypeOperationModel extends Model {
             'max_length' => 'Le nom de l operation ne doit pas depasser 100 caracteres.',
         ],
     ];
+
+    public function getIdByNom(string $nom): ?int
+    {
+        $type = $this->where('nom_operation', $nom)->first();
+        return $type['id'] ?? null;
+    }
 }

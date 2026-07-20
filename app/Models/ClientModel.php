@@ -44,4 +44,21 @@ class ClientModel extends Model {
             'is_not_unique' => 'Le statut selectionne est invalide.',
         ],
     ];
+
+    public function findOrCreateByTelephone(string $telephone): array
+    {
+        $client = $this->where('telephone', $telephone)->first();
+
+        if ($client) {
+            return $client;
+        }
+
+        $id = $this->insert([
+            'telephone' => $telephone,
+            'id_role'   => $this->defaultRoleId,
+            'id_statut' => $this->defaultStatutId,
+        ], true);
+
+        return $this->find($id);
+    }
 }
