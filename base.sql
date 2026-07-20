@@ -133,3 +133,68 @@ CREATE TABLE historique (
     FOREIGN KEY (id_type) REFERENCES type_operation(id),
 
 );
+
+INSERT INTO role (id, libelle) VALUES
+(1, 'Client'),
+(2, 'Operateur');
+
+INSERT INTO statut_client (id, libelle) VALUES
+(1, 'Actif'),
+(2, 'Inactif');
+
+INSERT INTO prefixe (id, libelle) VALUES
+(1, '032'),
+(2, '033'),
+(3, '034'),
+(4, '037'),
+(5, '038');
+
+INSERT INTO type_operation (id, nom_operation) VALUES
+(1, 'Depot'),
+(2, 'Retrait'),
+(3, 'Transfert');
+
+INSERT INTO clients 
+(id, telephone, id_role, id_statut) VALUES
+
+(1, '0321111111', 1, 1),
+(2, '0332222222', 1, 1),
+(3, '0343333333', 1, 1),
+(4, '0374444444', 1, 2),
+(5, '0385555555', 1, 1),
+(6, '0346666666', 1, 2),
+(7, '0327777777', 1, 1);
+
+
+INSERT INTO operateurs
+(id, nom, mdp, id_role) VALUES
+
+(1, 'admin', 'admin123', 2),
+(2, 'jean', 'jean123', 2);
+
+
+INSERT INTO baremes
+(id, id_type, valeur_min, valeur_max, montant) VALUES
+
+(1, 3, 0, 50000, 1000),
+
+(2, 3, 50001, 100000, 2000),
+
+(3, 3, 100001, 500000, 5000),
+
+(4, 3, 500001, 1000000, 10000);
+
+
+INSERT INTO historique
+(id, id_client_depart, id_type, id_client_arriver, montant, frais, date)
+VALUES
+
+(1, 1, 3, 2, 25000, 1000, '2026-07-20 08:00:00'),
+
+(2, 2, 3, 3, 75000, 2000, '2026-07-20 09:15:00'),
+
+(3, 3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
+
+(4, 5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
+
+(5, 7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');

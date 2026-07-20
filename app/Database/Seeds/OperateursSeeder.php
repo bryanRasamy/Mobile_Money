@@ -15,9 +15,9 @@ class OperateursSeeder extends Seeder
                 'id_role' => 2,
             ],
             [
-                'nom' => 'operateur',
-                'mdp' => password_hash('operateur123', PASSWORD_DEFAULT),
-                'id_role' => 3,
+                'nom' => 'jean',
+                'mdp' => password_hash('jean123', PASSWORD_DEFAULT),
+                'id_role' => 2,
             ],
         ];
 
