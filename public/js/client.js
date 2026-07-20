@@ -12,6 +12,26 @@ function closeModalOverlay(event) {
   }
 }
 
+let compteurDestinataire = 1;
+
+function ajouterLigneDestinataire() {
+  const conteneur = document.getElementById('listeDestinataires');
+  const ligne = document.createElement('div');
+  ligne.className = 'destinataire-ligne flex gap-2 mb-2';
+  ligne.innerHTML = `
+    <input type="tel" name="destinataires[${compteurDestinataire}][telephone]" class="input-field" placeholder="Numero du beneficiaire" required>
+    <input type="number" name="destinataires[${compteurDestinataire}][montant]" class="input-field" placeholder="Montant (Ar)" min="100" required>
+    <button type="button" class="btn-icon" onclick="this.parentElement.remove()"><i class="fas fa-trash"></i></button>
+  `;
+  conteneur.appendChild(ligne);
+  compteurDestinataire++;
+}
+
+function handleTransfer(event) {
+  event.preventDefault();
+  envoyerOperation(event.target, 'modalTransfer');
+}
+
 function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   const toast = document.createElement('div');

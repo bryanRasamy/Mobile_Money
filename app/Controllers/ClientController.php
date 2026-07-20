@@ -23,9 +23,9 @@ class ClientController extends BaseController
         $client = $clientModel->findOrCreateByTelephone($telephone);
 
         session()->set('user', [
-            'id'        => $client['id'],
+            'id' => $client['id'],
             'telephone' => $client['telephone'],
-            'role'      => $client['id_role'],
+            'role' => $client['id_role'],
         ]);
 
         return redirect()->to(site_url('client/dashboard'));
@@ -38,9 +38,9 @@ class ClientController extends BaseController
         $idClient = $user['id'];
 
         return view('client/dashboard', [
-            'idClient'     => $idClient,
-            'telephone'    => $user['telephone'],
-            'solde'        => $historiqueModel->getSolde($idClient),
+            'idClient' => $idClient,
+            'telephone' => $user['telephone'],
+            'solde' => $historiqueModel->getSolde($idClient),
             'transactions' => $historiqueModel->getHistoriqueClient($idClient, 6),
         ]);
     }
@@ -58,7 +58,7 @@ class ClientController extends BaseController
         $typeModel = new \App\Models\TypeOperationModel();
         $idType = $typeModel->getIdByNom('Dépôt');
 
-        if (! $idType) {
+        if (!$idType) {
             return $this->response->setJSON(['success' => false, 'message' => "Type 'Depot' introuvable."]);
         }
 
@@ -66,9 +66,9 @@ class ClientController extends BaseController
         $historiqueModel->enregistrer(null, $idType, $idClient, $montant, 0);
 
         return $this->response->setJSON([
-            'success'   => true,
-            'message'   => 'Dépôt effectué avec succès.',
-            'solde'     => $historiqueModel->getSolde($idClient),
+            'success' => true,
+            'message' => 'Dépôt effectué avec succès.',
+            'solde' => $historiqueModel->getSolde($idClient),
             'csrf_hash' => csrf_hash(),
         ]);
     }
@@ -89,7 +89,7 @@ class ClientController extends BaseController
         $typeModel = new \App\Models\TypeOperationModel();
         $idType = $typeModel->getIdByNom('Retrait');
 
-        if (! $idType) {
+        if (!$idType) {
             return $this->response->setJSON(['success' => false, 'message' => "Type 'Retrait' introuvable."]);
         }
 
@@ -103,59 +103,37 @@ class ClientController extends BaseController
         $historiqueModel->enregistrer($idClient, $idType, null, $montant, $frais);
 
         return $this->response->setJSON([
-            'success'   => true,
-            'message'   => 'Retrait effectué avec succès.',
-            'solde'     => $historiqueModel->getSolde($idClient),
+            'success' => true,
+            'message' => 'Retrait effectué avec succès.',
+            'solde' => $historiqueModel->getSolde($idClient),
             'csrf_hash' => csrf_hash(),
         ]);
     }
 
     public function transfert()
     {
-        $telephoneDest = trim($this->request->getPost('telephone'));
-        $montant = (float) $this->request->getPost('montant');
         $user = session()->get('user');
-        $idClient = $user['id'];
+        $idClient = $user['id'] ?? null;
 
-        if (empty($telephoneDest) || $montant <= 0) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Données invalides.']);
+        if (!$idClient) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Session expiree.']);
         }
 
-        $clientModel = new \App\Models\ClientModel();
-        $destinataire = $clientModel->where('telephone', $telephoneDest)->first();
+        $destinataires = $this->request->getPost('destinataires');
 
-        if (! $destinataire) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Bénéficiaire introuvable.']);
+        if (!is_array($destinataires) || count($destinataires) === 0) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Aucun beneficiaire fourni.']);
         }
 
-        if ($destinataire['id'] == $idClient) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Transfert vers vous-même impossible.']);
+        $service = new \App\Libraries\TransfertService();
+
+        try {
+            $resultat = $service->transfererMultiple($idClient, $destinataires);
+        } catch (\RuntimeException $e) {
+            return $this->response->setJSON(['success' => false, 'message' => $e->getMessage()]);
         }
 
-        $historiqueModel = new \App\Models\HistoriqueModel();
-        $solde = $historiqueModel->getSolde($idClient);
-
-        $typeModel = new \App\Models\TypeOperationModel();
-        $idType = $typeModel->getIdByNom('Transfert');
-
-        if (! $idType) {
-            return $this->response->setJSON(['success' => false, 'message' => "Type 'Transfert' introuvable."]);
-        }
-
-        $baremeModel = new \App\Models\BaremeModel();
-        $frais = $baremeModel->getFrais($idType, $montant);
-
-        if ($solde < ($montant + $frais)) {
-            return $this->response->setJSON(['success' => false, 'message' => 'Solde insuffisant.']);
-        }
-
-        $historiqueModel->enregistrer($idClient, $idType, $destinataire['id'], $montant, $frais);
-
-        return $this->response->setJSON([
-            'success'   => true,
-            'message'   => 'Transfert effectué avec succès.',
-            'solde'     => $historiqueModel->getSolde($idClient),
-            'csrf_hash' => csrf_hash(),
-        ]);
+        $resultat['csrf_hash'] = csrf_hash();
+        return $this->response->setJSON($resultat);
     }
 }

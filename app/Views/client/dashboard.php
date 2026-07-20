@@ -26,10 +26,12 @@
       <div class="balance-card mb-8">
         <div class="flex items-center justify-between mb-6">
           <span class="text-sm" style="opacity:0.8;">Solde disponible</span>
-          <span class="text-xs font-bold" style="background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px;">Compte Principal</span>
+          <span class="text-xs font-bold"
+            style="background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px;">Compte Principal</span>
         </div>
         <div class="mb-6">
-          <span class="font-display font-black" style="font-size:2.25rem;" id="soldeValue"><?= number_format($solde, 0, ',', ' ') ?></span>
+          <span class="font-display font-black" style="font-size:2.25rem;"
+            id="soldeValue"><?= number_format($solde, 0, ',', ' ') ?></span>
           <span class="ml-1" style="font-size:1.125rem;opacity:0.8;">FCFA</span>
         </div>
         <div class="flex items-center justify-between">
@@ -62,13 +64,13 @@
           <a href="<?= site_url('client/historique') ?>" class="link-accent">Voir tout</a>
         </div>
 
-        <?php if (empty($transactions)) : ?>
+        <?php if (empty($transactions)): ?>
           <p class="text-muted text-sm">Aucune transaction pour le moment.</p>
         <?php endif; ?>
 
-        <?php foreach ($transactions as $tx) :
-            $estCredit = $tx['id_client_arriver'] == $idClient;
-        ?>
+        <?php foreach ($transactions as $tx):
+          $estCredit = $tx['id_client_arriver'] == $idClient;
+          ?>
           <div class="tx-row">
             <div class="tx-icon <?= $estCredit ? 'tx-icon-credit' : 'tx-icon-debit' ?>">
               <i class="fas <?= $estCredit ? 'fa-arrow-down' : 'fa-arrow-up' ?>"></i>
@@ -79,7 +81,7 @@
             </div>
             <div class="tx-amount">
               <p class="tx-amount-value <?= $estCredit ? 'tx-amount-credit' : 'tx-amount-debit' ?>">
-                <?= $estCredit ? '+' : '-' ?> <?= number_format($tx['montant'], 0, ',', ' ') ?> FCFA
+                <?= $estCredit ? '+' : '-' ?>   <?= number_format($tx['montant'], 0, ',', ' ') ?> FCFA
               </p>
             </div>
           </div>
@@ -89,8 +91,10 @@
 
     <nav class="mobile-nav" aria-label="Navigation principale">
       <button class="mobile-nav-item active"><i class="fas fa-house"></i><span>Accueil</span></button>
-      <button class="mobile-nav-item" onclick="openModal('modalTransfer')"><i class="fas fa-paper-plane"></i><span>Transferer</span></button>
-      <a href="<?= site_url('client/historique') ?>" class="mobile-nav-item"><i class="fas fa-clock-rotate-left"></i><span>Historique</span></a>
+      <button class="mobile-nav-item" onclick="openModal('modalTransfer')"><i
+          class="fas fa-paper-plane"></i><span>Transferer</span></button>
+      <a href="<?= site_url('client/historique') ?>" class="mobile-nav-item"><i
+          class="fas fa-clock-rotate-left"></i><span>Historique</span></a>
     </nav>
   </div>
 </section>
@@ -100,7 +104,8 @@
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
       <h3 class="font-display font-bold" style="font-size:1.25rem;">Déposer de l'argent</h3>
-      <button class="modal-close" onclick="closeModal('modalDepot')" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+      <button class="modal-close" onclick="closeModal('modalDepot')" aria-label="Fermer"><i
+          class="fas fa-xmark"></i></button>
     </div>
     <form class="form-stack" action="<?= site_url('client/depot') ?>" onsubmit="handleDepot(event)">
       <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="csrf-input">
@@ -123,7 +128,8 @@
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
       <h3 class="font-display font-bold" style="font-size:1.25rem;">Retrait d'argent</h3>
-      <button class="modal-close" onclick="closeModal('modalRetrait')" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+      <button class="modal-close" onclick="closeModal('modalRetrait')" aria-label="Fermer"><i
+          class="fas fa-xmark"></i></button>
     </div>
     <form class="form-stack" action="<?= site_url('client/retrait') ?>" onsubmit="handleRetrait(event)">
       <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="csrf-input">
@@ -141,26 +147,36 @@
   </div>
 </div>
 
-<!-- MODAL : Transfert -->
+
+<!-- MODAL : Transfert (simple + multiple, unifie) -->
 <div class="modal-overlay" id="modalTransfer" onclick="closeModalOverlay(event)">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
       <h3 class="font-display font-bold" style="font-size:1.25rem;">Transferer de l'argent</h3>
-      <button class="modal-close" onclick="closeModal('modalTransfer')" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+      <button class="modal-close" onclick="closeModal('modalTransfer')" aria-label="Fermer"><i
+          class="fas fa-xmark"></i></button>
     </div>
+
     <form class="form-stack" action="<?= site_url('client/transfert') ?>" onsubmit="handleTransfer(event)">
       <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="csrf-input">
-      <div class="input-group">
-        <i class="fas fa-phone input-icon"></i>
-        <input type="tel" name="telephone" class="input-field" placeholder="Numero du beneficiaire" required>
+
+      <div id="listeDestinataires">
+        <div class="destinataire-ligne flex gap-2 mb-2">
+          <input type="tel" name="destinataires[0][telephone]" class="input-field" placeholder="Numero du beneficiaire"
+            required>
+          <input type="number" name="destinataires[0][montant]" class="input-field" placeholder="Montant (Ar)" min="100"
+            required>
+        </div>
       </div>
-      <div class="input-group">
-        <i class="fas fa-money-bill input-icon"></i>
-        <input type="number" name="montant" class="input-field" placeholder="Montant (FCFA)" min="100" required>
-      </div>
+
+      <button type="button" class="btn-secondary" onclick="ajouterLigneDestinataire()">
+        <i class="fas fa-plus mr-2"></i>Ajouter un beneficiaire
+      </button>
+
       <div class="info-box info-box-gold">
-        <i class="fas fa-info-circle mr-2"></i>Frais selon barème en vigueur.
+        <i class="fas fa-info-circle mr-2"></i>Frais selon bareme en vigueur.
       </div>
+
       <button type="submit" class="btn-primary w-full text-center">
         <i class="fas fa-paper-plane mr-2"></i>Envoyer
       </button>
@@ -168,5 +184,5 @@
   </div>
 </div>
 
-<script src="<?= base_url('js/client.js') ?>"></script>
 
+<script src="<?= base_url('js/client.js') ?>"></script>
