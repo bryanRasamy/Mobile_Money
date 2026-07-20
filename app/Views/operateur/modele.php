@@ -1,5 +1,4 @@
 <?php
-    // Messages flash communs a toutes les pages qui utilisent ce modele
     $successMsg = session()->getFlashdata('message');
     $errorMsg   = session()->getFlashdata('error');
     $currentUrl = current_url();
@@ -13,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Ajustez ce chemin vers l'emplacement reel de style.css dans votre dossier public -->
   <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
   <?= $this->renderSection('styles') ?>
 </head>
