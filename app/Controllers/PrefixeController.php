@@ -18,7 +18,7 @@ class PrefixeController extends BaseController {
 
         $donnee = [
             'titre' => 'ajout de prefixe',
-            'prefixes' => $prefixeModel->findAll()
+            'prefixes' => $prefixeModel->where('id_operateur',$user['id'])->findAll()
         ];
 
         return view('operateur/config_prefix', $donnee);
@@ -38,7 +38,8 @@ class PrefixeController extends BaseController {
         $prefixeModel = new PrefixeModel();
 
         $donnee = [
-            'libelle' => $libelle
+            'libelle' => $libelle,
+            'id_operateur' => $user['id']
         ];
 
         try {

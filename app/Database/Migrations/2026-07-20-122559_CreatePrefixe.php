@@ -17,6 +17,9 @@ class CreatePrefixe extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 10,
             ],
+            'id_operateur' => [
+                'type' => 'INTEGER',
+            ],
         ]);
 
         $this->forge->addKey('id', true);
