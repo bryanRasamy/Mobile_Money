@@ -3,107 +3,10 @@ CREATE TABLE prefixe (
     libelle VARCHAR(20) 
 );
 
-
 CREATE TABLE type_operation (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
     nom_operation VARCHAR(100) 
 );
-
-
-CREATE TABLE statut_client (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(50) 
-);
-
-
-CREATE TABLE role (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(50) 
-);
-
-
-CREATE TABLE clients (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    telephone VARCHAR(20)  UNIQUE,
-    id_role INTEGER ,
-    id_statut INTEGER ,
-
-    FOREIGN KEY (id_role) REFERENCES role(id),
-    FOREIGN KEY (id_statut) REFERENCES statut_client(id)
-);
-
-
-CREATE TABLE operateurs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    nom VARCHAR(100) ,
-    mdp VARCHAR(255) ,
-    id_role INTEGER ,
-
-    FOREIGN KEY (id_role) REFERENCES role(id)
-);
-
-CREATE DATABASE gestion_transfert;
-USE gestion_transfert;
-
-
-
-
-CREATE TABLE prefixe (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(20) 
-);
-
-
-
-
-CREATE TABLE type_operation (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    nom_operation VARCHAR(100) 
-);
-
-
-
-
-CREATE TABLE statut_client (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(50) 
-);
-
-
-
-
-CREATE TABLE role (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    libelle VARCHAR(50) 
-);
-
-
-
-
-CREATE TABLE clients (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    telephone VARCHAR(20)  UNIQUE,
-    id_role INTEGER ,
-    id_statut INTEGER ,
-
-    FOREIGN KEY (id_role) REFERENCES role(id),
-    FOREIGN KEY (id_statut) REFERENCES statut_client(id)
-);
-
-
-
-
-CREATE TABLE operateurs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    nom VARCHAR(100) ,
-    mdp VARCHAR(255) ,
-    id_role INTEGER ,
-
-    FOREIGN KEY (id_role) REFERENCES role(id)
-);
-
-
-
 
 CREATE TABLE baremes (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -112,12 +15,37 @@ CREATE TABLE baremes (
     valeur_max DECIMAL(15,2) ,
     montant DECIMAL(15,2) ,
 
-    FOREIGN KEY (id_type) REFERENCES type_operation(id),
-
+    FOREIGN KEY (id_type) REFERENCES type_operation(id)
 );
 
+CREATE TABLE statut_client (
+    id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    libelle VARCHAR(50) 
+);
 
+CREATE TABLE role (
+    id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    libelle VARCHAR(50) 
+);
 
+CREATE TABLE clients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    telephone VARCHAR(20)  UNIQUE,
+    id_role INTEGER ,
+    id_statut INTEGER ,
+
+    FOREIGN KEY (id_role) REFERENCES role(id),
+    FOREIGN KEY (id_statut) REFERENCES statut_client(id)
+);
+
+CREATE TABLE operateurs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT ,
+    nom VARCHAR(100) ,
+    mdp VARCHAR(255) ,
+    id_role INTEGER ,
+
+    FOREIGN KEY (id_role) REFERENCES role(id)
+);
 
 CREATE TABLE historique (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -130,8 +58,7 @@ CREATE TABLE historique (
 
     FOREIGN KEY (id_client_depart) REFERENCES clients(id),
     FOREIGN KEY (id_client_arriver) REFERENCES clients(id),
-    FOREIGN KEY (id_type) REFERENCES type_operation(id),
-
+    FOREIGN KEY (id_type) REFERENCES type_operation(id)
 );
 
 INSERT INTO role (id, libelle) VALUES
@@ -156,7 +83,6 @@ INSERT INTO type_operation (id, nom_operation) VALUES
 
 INSERT INTO clients 
 (id, telephone, id_role, id_statut) VALUES
-
 (1, '0321111111', 1, 1),
 (2, '0332222222', 1, 1),
 (3, '0343333333', 1, 1),
@@ -168,33 +94,22 @@ INSERT INTO clients
 
 INSERT INTO operateurs
 (id, nom, mdp, id_role) VALUES
-
 (1, 'admin', 'admin123', 2),
 (2, 'jean', 'jean123', 2);
 
 
 INSERT INTO baremes
 (id, id_type, valeur_min, valeur_max, montant) VALUES
-
 (1, 3, 0, 50000, 1000),
-
 (2, 3, 50001, 100000, 2000),
-
 (3, 3, 100001, 500000, 5000),
-
 (4, 3, 500001, 1000000, 10000);
 
 
 INSERT INTO historique
-(id, id_client_depart, id_type, id_client_arriver, montant, frais, date)
-VALUES
-
+(id, id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES
 (1, 1, 3, 2, 25000, 1000, '2026-07-20 08:00:00'),
-
 (2, 2, 3, 3, 75000, 2000, '2026-07-20 09:15:00'),
-
 (3, 3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
-
 (4, 5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
-
 (5, 7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');
