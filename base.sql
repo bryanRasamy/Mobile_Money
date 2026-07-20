@@ -44,9 +44,11 @@ CREATE TABLE role (
 CREATE TABLE clients (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
     telephone VARCHAR(20)  UNIQUE,
+    id_operateur INTEGER,
     id_role INTEGER ,
     id_statut INTEGER ,
 
+    FOREIGN KEY (id_operateur) REFERENCES operateurs(id),
     FOREIGN KEY (id_role) REFERENCES role(id),
     FOREIGN KEY (id_statut) REFERENCES statut_client(id)
 );
@@ -65,56 +67,50 @@ CREATE TABLE historique (
     FOREIGN KEY (id_type) REFERENCES type_operation(id)
 );
 
-INSERT INTO role (id, libelle) VALUES
-(1, 'Client'),
-(2, 'Operateur');
+INSERT INTO role (libelle) VALUES
+('Client'),
+('Operateur');
 
-INSERT INTO statut_client (id, libelle) VALUES
-(1, 'Actif'),
-(2, 'Inactif');
+INSERT INTO statut_client (libelle) VALUES
+('Actif'),
+('Inactif');
 
-INSERT INTO operateurs (id, nom, mdp, id_role) VALUES
-(1, 'orange', 'orange', 2),
-(2, 'autres', 'autres', 2);
+INSERT INTO operateurs (nom, mdp, id_role) VALUES
+('orange', 'orange', 2),
+('autres', 'autres', 2);
 
-INSERT INTO prefixe (id, libelle, id_operateur) VALUES
-(1, '032', 1),
-(2, '033', 2),
-(3, '034', 2),
-(4, '037', 1),
-(5, '038', 2);
+INSERT INTO prefixe (libelle, id_operateur) VALUES
+('032', 1),
+('033', 2),
+('034', 2),
+('037', 1),
+('038', 2);
 
-INSERT INTO type_operation (id, nom_operation, commission) VALUES
-(1, 'Depot',10),
-(2, 'Retrait',15),
-(3, 'Transfert',20);
+INSERT INTO type_operation (nom_operation, commission) VALUES
+('Depot',10),
+('Retrait',15),
+('Transfert',20);
 
-INSERT INTO clients 
-(id, telephone, id_role, id_statut) VALUES
-(1, '0321111111', 1, 1),
-(2, '0332222222', 1, 1),
-(3, '0343333333', 1, 1),
-(4, '0374444444', 1, 2),
-(5, '0385555555', 1, 1),
-(6, '0346666666', 1, 2),
-(7, '0327777777', 1, 1);
+INSERT INTO clients (telephone, id_operateur, id_role, id_statut) VALUES
+('0340000001', 2, 1, 1),
+('0340000002', 2, 1, 2),
+('0321234567', 1, 1, 1);
 
 
-INSERT INTO baremes
-(id, id_type, valeur_min, valeur_max, montant) VALUES
-(1, 3, 0, 50000, 1000),
-(2, 3, 50001, 100000, 2000),
-(3, 3, 100001, 500000, 5000),
-(4, 3, 500001, 1000000, 10000);
+INSERT INTO baremes (id_type, valeur_min, valeur_max, montant) VALUES
+(3, 0, 50000, 1000),
+(3, 50001, 100000, 2000),
+(3, 100001, 500000, 5000),
+(3, 500001, 1000000, 10000);
 
 
-INSERT INTO historique
-(id, id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES
-(1, 1, 3, 2, 25000, 1000, '2026-07-20 08:00:00'),
-(2, 2, 3, 3, 75000, 2000, '2026-07-20 09:15:00'),
-(3, 3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
-(4, 5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
-(5, 7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');
+INSERT INTO historique (id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES
+(1, 3, 2, 25000, 1000, '2026-07-20 08:00:00'),
+(2, 3, 3, 75000, 2000, '2026-07-20 09:15:00'),
+(3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
+(5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
+(7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');
 
 
 CREATE view v_historique_type_operation AS SELECT tp.nom_operation as nom_operation, hs.* FROM type_operation as tp JOIN historique as hs ON tp.id = hs.id_type;
+CREATE view v_situation_gain AS SELECT nom_operation,SUM();

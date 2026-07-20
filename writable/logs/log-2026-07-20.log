@@ -388,3 +388,59 @@ in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 11 SYSTEMPATH/rewrite.php(44): require_once('/home/bryan/Documents/GitHub/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 19:37:37 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "operation/modele.php"
+[Method: GET, Route: operateur/situationGain]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/HistoriqueController.php(19): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\HistoriqueController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/bryan/Documents/GitHub/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 19:37:49 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "operation/modele.php"
+[Method: GET, Route: operateur/situationGain]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/HistoriqueController.php(19): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\HistoriqueController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/bryan/Documents/GitHub/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 20:12:28 --> FOREIGN KEY constraint failed
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Database/BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH/Database/Seeds/ClientsSeeder.php(32): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH/Database/Seeder.php(155): App\Database\Seeds\ClientsSeeder->run()
+ 8 APPPATH/Database/Seeds/DatabaseSeeder.php(14): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH/Database/Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+10 SYSTEMPATH/Commands/Database/Seed.php(79): CodeIgniter\Database\Seeder->call()
+11 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+12 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+13 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+15 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-07-20 20:12:28 --> ErrorException: require(/home/bryan/Documents/GitHub/Mobile_Money/app/Views/errors/cli/error_exception.php): Failed to open stream: No such file or directory
+[Method: CLI, Route: db:seed/DatabaseSeeder]
+in SYSTEMPATH/CLI/BaseCommand.php on line 133.
+ 1 SYSTEMPATH/CLI/BaseCommand.php(133): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CLI/BaseCommand.php(133): require()
+ 3 SYSTEMPATH/Commands/Database/Seed.php(81): CodeIgniter\CLI\BaseCommand->showError()
+ 4 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+ 5 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+ 6 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+ 7 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+ 8 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()

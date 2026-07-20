@@ -17,4 +17,6 @@ $routes->group('operateur', ['filter' => ['auth', 'role:2']], function($routes) 
 
     $routes->get('typeOperation/form', 'TypeOperationController::index');
     $routes->add('typeOperation/add', 'TypeOperationController::ajouterTypeOperation');
+
+    $routes->get('situationGain', 'HistoriqueController::index');
 });

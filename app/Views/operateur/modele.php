@@ -44,7 +44,7 @@
         <a href="<?= site_url('operateur/typeOperation/form') ?>" class="sidebar-link <?= (strpos($currentUrl, 'types_operation') !== false) ? 'active' : '' ?>">
           <i class="fas fa-list-ol"></i> Types d'operation
         </a>
-        <a href="<?= site_url('operateur/situation_gain') ?>" class="sidebar-link <?= (strpos($currentUrl, 'situation_gain') !== false) ? 'active' : '' ?>">
+        <a href="<?= site_url('operateur/situationGain') ?>" class="sidebar-link <?= (strpos($currentUrl, 'situation_gain') !== false) ? 'active' : '' ?>">
           <i class="fas fa-chart-line"></i> Situation des gains
         </a>
       </nav>

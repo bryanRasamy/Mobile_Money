@@ -23,6 +23,8 @@ class CreatePrefixe extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_operateur', 'operateurs', 'id', 'CASCADE', 'RESTRICT');
+
         $this->forge->createTable('prefixe');
     }
 
