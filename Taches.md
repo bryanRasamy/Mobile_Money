@@ -55,7 +55,6 @@
 - fonctions:
     - ajouterPrefixe();
     - supprimerPrefixe();
-    - modifierPrefixe();
 
 - design:
     - formulaire:
