@@ -51,4 +51,8 @@ class BaremeModel extends Model {
             throw new \Exception($e->getMessage());
         }
     }
+
+    public function getBaremes($idOperateur,$idTypeOperation){
+        $listesBaremes = $this->where('id_operateur',$idOperateur)->findAll();
+    }
 }

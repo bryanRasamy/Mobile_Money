@@ -8,6 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/loginOperateur', 'OperateurController::index');
 $routes->post('/login/operateur', 'OperateurController::login');
+$routes->get('/loginClient','ClientController::index');
+$routes->post('/login/client','ClientController::login' );
 $routes->get('/logout', 'OperateurController::logout');
 
 $routes->group('operateur', ['filter' => ['auth', 'role:2']], function($routes) {

@@ -1,4 +1,4 @@
-# Guide pour lancer l'application TechMada
+# Guide pour lancer l'application de Mobile Money
 
 ## 1.Générer la database:
 Il faut lancer ces deux commandes dans la racine du dossier de l'application:

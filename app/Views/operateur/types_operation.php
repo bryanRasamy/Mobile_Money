@@ -25,6 +25,11 @@
             <input type="text" name="commission" class="input-field" placeholder="Commission (%)" value="<?= esc(old('commission')) ?>" required>
         </div>
 
+        <div class="input-group">
+            <i class="fas fa-tag input-icon"></i>
+            <input type="text" name="promotion" class="input-field" placeholder="Promotion (%)" value="<?= esc(old('promotion')) ?>" required>
+        </div>
+
         <div>
             <div class="flex items-center justify-between mb-3">
                 <span class="text-sm font-bold text-muted">Baremes de frais</span>

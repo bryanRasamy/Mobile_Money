@@ -21,6 +21,10 @@ class CreateTypeOperation extends Migration
                 'type' => 'DECIMAL',
                 'constraint' => '15,2',
             ],
+            'promotion' => [
+                'type' => 'DECIMAL',
+                'constraint' => '15,2',
+            ],
         ]);
 
         $this->forge->addKey('id', true);

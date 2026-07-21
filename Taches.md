@@ -175,3 +175,16 @@
 - fonctions:
 - design:
 - integration:
+
+
+
+
+## Alea:
+### ETU004018:
+fonction transfert():
+- Prendre id_operateur du client de depart (expediteur)
+- Prendre l'id du type de l'operateur
+- Filtrer la table baremes en fonction de l'id_operateur, ensuite en fonction de l'id_type
+- Verifier le frais correspondant au montant
+- Appliquer la promotion sur le frais trouver
+- Enregistrer dans historique le transfert

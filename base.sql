@@ -18,16 +18,19 @@ CREATE TABLE prefixe (
 CREATE TABLE type_operation (
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
     nom_operation VARCHAR(100),
-    commission DECIMAL(15,2)
+    commission DECIMAL(15,2),
+    promotion DECIMAL(15,2)
 );
 
 CREATE TABLE baremes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT ,
-    id_type INTEGER ,
-    valeur_min DECIMAL(15,2) ,
-    valeur_max DECIMAL(15,2) ,
-    montant DECIMAL(15,2) ,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_type INTEGER,
+    id_operateur INTEGER,
+    valeur_min DECIMAL(15,2),
+    valeur_max DECIMAL(15,2),
+    montant DECIMAL(15,2),
 
+    FOREIGN KEY (id_operateur) REFERENCES operateurs(id),
     FOREIGN KEY (id_type) REFERENCES type_operation(id)
 );
 
@@ -86,10 +89,10 @@ INSERT INTO prefixe (libelle, id_operateur) VALUES
 ('037', 1),
 ('038', 2);
 
-INSERT INTO type_operation (nom_operation, commission) VALUES
-('Depot',10),
-('Retrait',15),
-('Transfert',20);
+INSERT INTO type_operation (nom_operation, commission, promotion) VALUES
+('Depot',10, 0),
+('Retrait',15, 0),
+('Transfert',20, 10);
 
 INSERT INTO clients (telephone, id_operateur, id_role, id_statut) VALUES
 ('0340000001', 2, 1, 1),
@@ -97,11 +100,11 @@ INSERT INTO clients (telephone, id_operateur, id_role, id_statut) VALUES
 ('0321234567', 1, 1, 1);
 
 
-INSERT INTO baremes (id_type, valeur_min, valeur_max, montant) VALUES
-(3, 0, 50000, 1000),
-(3, 50001, 100000, 2000),
-(3, 100001, 500000, 5000),
-(3, 500001, 1000000, 10000);
+INSERT INTO baremes (id_type,id_operateur, valeur_min, valeur_max, montant) VALUES
+(3, 1, 0, 50000, 1000),
+(3, 1, 50001, 100000, 2000),
+(3, 1, 100001, 500000, 5000),
+(3, 2, 500001, 1000000, 10000);
 
 
 INSERT INTO historique (id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES

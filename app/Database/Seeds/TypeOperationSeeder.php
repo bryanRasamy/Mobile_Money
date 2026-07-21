@@ -11,16 +11,19 @@ class TypeOperationSeeder extends Seeder
         $data = [
             [
                 'nom_operation' => 'Dépôt',
-                'commission' => 10
+                'commission' => 10,
+                'promotion' => 0
                 
             ],
             [
                 'nom_operation' => 'Retrait',
-                'commission' => 15
+                'commission' => 15,
+                'promotion' => 0
             ],
             [
                 'nom_operation' => 'Transfert',
-                'commission' => 20
+                'commission' => 20,
+                'promotion' => 10
             ],
         ];
 

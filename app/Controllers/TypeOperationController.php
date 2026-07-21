@@ -33,6 +33,7 @@ class TypeOperationController extends BaseController {
 
         $nomOperation = $this->request->getPost('nom_operation');
         $commission = $this->request->getPost('commission');
+        $promotion = $this->request->getPost('promotion');
         $baremes = $this->request->getPost('baremes');
 
         if(!$baremes || empty($baremes)){
@@ -44,7 +45,8 @@ class TypeOperationController extends BaseController {
 
         $donnee = [
             'nom_operation' => $nomOperation,
-            'commission' => $commission
+            'commission' => $commission,
+            'promotion' => $promotion
         ];
 
         try {
