@@ -52,6 +52,9 @@
     - Table historique
     - Table type_operation
 
+- Vue v_situation_gain:
+    - Vue v_historique_type_operation
+
 ## 2-Pages à creer:
 ### 2-1-Coté opérateur (ETU004018):
 #### a-config_prefix.php:
@@ -101,6 +104,7 @@
 - base:
     - Table historique
     - Vue v_historique_Type_operation
+    - Vue v_situation_gain
 
 - fonctions:
     - afficherSituationGain()

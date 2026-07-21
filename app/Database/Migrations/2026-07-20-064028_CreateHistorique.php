@@ -13,6 +13,7 @@ class CreateHistorique extends Migration
                 'type' => 'INTEGER',
                 'auto_increment' => true,
             ],
+
             'id_client_depart' => [
                 'type' => 'INTEGER',
                 'null' => true,
@@ -22,17 +23,21 @@ class CreateHistorique extends Migration
                 'type' => 'INTEGER',
                 'null' => true,
             ],
+
             'id_type' => [
                 'type' => 'INTEGER',
             ],
+
             'montant' => [
-                'type' => 'DECIMAL',
+                'type'       => 'DECIMAL',
                 'constraint' => '15,2',
             ],
+
             'frais' => [
-                'type' => 'DECIMAL',
+                'type'       => 'DECIMAL',
                 'constraint' => '15,2',
             ],
+
             'date' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -73,3 +78,5 @@ class CreateHistorique extends Migration
         $this->forge->dropTable('historique', true);
     }
 }
+
+    

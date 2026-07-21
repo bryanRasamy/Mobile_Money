@@ -104,12 +104,13 @@ INSERT INTO baremes (id_type, valeur_min, valeur_max, montant) VALUES
 (3, 500001, 1000000, 10000);
 
 
-INSERT INTO historique (id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES
-(1, 2, 2, 25000, 1000, '2026-07-20 08:00:00'),
-(3, 2, 3, 75000, 2000, '2026-07-20 09:15:00'),
-(3, 3, 1, 200000, 5000, '2026-07-20 10:30:00'),
-(2, 3, 1, 800000, 10000, '2026-07-20 11:45:00'),
-(3, 3, 2, 50000, 1000, '2026-07-20 12:10:00');
+INSERT INTO historique
+(id, id_client_depart, id_type, id_client_arriver, montant, frais, date) VALUES
+(1, 1, 3, 2, 25000, 1000, '2026-07-20 08:00:00'),
+(2, 2, 3, 3, 75000, 2000, '2026-07-20 09:15:00'),
+(3, 3, 3, 5, 200000, 5000, '2026-07-20 10:30:00'),
+(4, 5, 3, 7, 800000, 10000, '2026-07-20 11:45:00'),
+(5, 7, 3, 1, 50000, 1000, '2026-07-20 12:10:00');
 
 
-CREATE view v_historique_type_operation_client AS SELECT tp.nom_operation as nom_operation, hs.* , telephone, id_operateur, id_role, id_statut FROM type_operation as tp JOIN historique as hs ON tp.id = hs.id_type JOIN clients as cl ON cl.id=hs.id_client_depart;
+CREATE view v_historique_type_operation AS SELECT tp.nom_operation as nom_operation, hs.* FROM type_operation as tp JOIN historique as hs ON tp.id = hs.id_type;
